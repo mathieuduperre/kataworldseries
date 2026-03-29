@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kata World Series – IJF Official Series</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --blue:   #1B3A6B;
+  --blue2:  #245299;
+  --blue-lt:#E8EEF8;
+  --red:    #B8172A;
+  --ink:    #111318;
+  --ink2:   #3A3D45;
+  --muted:  #7A7D86;
+  --rule:   #DDE1E9;
+  --paper:  #F5F6F9;
+  --white:  #FFFFFF;
+  --gold:   #C5A84F;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;}
+img{display:block;width:100%;height:100%;object-fit:cover;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--blue);border-bottom:1px solid rgba(255,255,255,.12);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:17px;color:#fff;text-decoration:none;letter-spacing:.01em;}
+.nav-logo em{font-style:italic;color:rgba(255,255,255,.6);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;background:var(--red);color:#fff;padding:8px 18px;text-decoration:none;transition:opacity .2s;}
+.nav-cta:hover{opacity:.88;}
+
+/* ── HERO ── */
+#hero{padding-top:60px;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;}
+.hero-left{
+  background:var(--blue);
+  padding:80px 64px 80px 40px;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.hero-left::before{
+  content:'';position:absolute;bottom:-80px;right:-80px;
+  width:420px;height:420px;border-radius:50%;
+  border:80px solid rgba(255,255,255,.04);pointer-events:none;
+}
+.hero-left::after{
+  content:'';position:absolute;top:-60px;left:-60px;
+  width:260px;height:260px;border-radius:50%;
+  border:50px solid rgba(255,255,255,.03);pointer-events:none;
+}
+.hero-eyebrow{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:rgba(255,255,255,.4);flex-shrink:0;}
+.hero-title{font-family:'DM Serif Display',serif;font-size:clamp(48px,5.5vw,80px);font-weight:400;line-height:1.0;color:#fff;margin-bottom:6px;letter-spacing:-.01em;}
+.hero-title-it{font-family:'DM Serif Display',serif;font-size:clamp(36px,4vw,60px);font-style:italic;color:rgba(255,255,255,.55);line-height:1.05;margin-bottom:36px;}
+.hero-text{font-size:16px;color:rgba(255,255,255,.7);line-height:1.8;max-width:440px;margin-bottom:40px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{display:inline-block;font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;padding:13px 28px;text-decoration:none;transition:all .22s;font-family:'DM Sans',sans-serif;}
+.btn-white{background:#fff;color:var(--blue);}
+.btn-white:hover{background:var(--blue-lt);}
+.btn-outline-white{border:1px solid rgba(255,255,255,.4);color:#fff;}
+.btn-outline-white:hover{background:rgba(255,255,255,.1);border-color:#fff;}
+.btn-blue{background:var(--blue);color:#fff;}
+.btn-blue:hover{background:var(--blue2);}
+.btn-red{background:var(--red);color:#fff;}
+.btn-red:hover{opacity:.88;}
+.btn-outline{border:1px solid var(--rule);color:var(--ink2);}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue);}
+.hero-right{position:relative;min-height:500px;}
+.hero-right img{position:absolute;inset:0;filter:brightness(.9) contrast(1.05);}
+.hero-right-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,58,107,.45) 0%,transparent 60%);}
+.hero-stat-bar{position:absolute;bottom:0;left:0;right:0;background:rgba(27,58,107,.88);backdrop-filter:blur(6px);display:grid;grid-template-columns:repeat(3,1fr);}
+.hstat{padding:22px 24px;border-right:1px solid rgba(255,255,255,.12);text-align:center;}
+.hstat:last-child{border-right:none;}
+.hstat-num{font-family:'DM Serif Display',serif;font-size:28px;color:#fff;display:block;line-height:1;}
+.hstat-lbl{font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:4px;display:block;}
+
+/* ── ANNOUNCE STRIP ── */
+.strip{background:var(--paper);border-bottom:1px solid var(--rule);padding:12px 40px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:var(--ink2);}
+.strip strong{color:var(--blue);font-weight:500;}
+.strip .sep{color:var(--rule);}
+
+/* ── SECTION WRAPPER ── */
+.section{padding:80px 0;}
+.container{max-width:1200px;margin:0 auto;padding:0 40px;}
+.sh{margin-bottom:48px;}
+.sh-eye{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--blue2);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.sh-eye::before{content:'';width:20px;height:2px;background:var(--red);flex-shrink:0;}
+.sh-title{font-family:'DM Serif Display',serif;font-size:clamp(28px,3.5vw,46px);color:var(--ink);line-height:1.08;letter-spacing:-.01em;}
+.sh-title em{font-style:italic;color:var(--blue);}
+.sh-sub{font-size:16px;color:var(--muted);margin-top:14px;max-width:580px;line-height:1.75;}
+
+/* ── FEATURED ── */
+#featured{background:var(--white);}
+.feat-grid{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid var(--rule);}
+.feat-main{padding:52px 56px;border-right:1px solid var(--rule);}
+.feat-tag{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:5px 14px;margin-bottom:28px;}
+.feat-city{font-family:'DM Serif Display',serif;font-size:clamp(44px,5vw,72px);line-height:1;color:var(--ink);letter-spacing:-.02em;}
+.feat-city em{font-style:italic;color:var(--blue);}
+.feat-country{font-family:'Cormorant',serif;font-size:20px;font-style:italic;color:var(--muted);margin-top:4px;margin-bottom:24px;}
+.feat-date{font-family:'DM Serif Display',serif;font-size:18px;color:var(--ink);display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.feat-date::before{content:'';width:20px;height:1px;background:var(--red);flex-shrink:0;}
+.feat-body{font-size:15.5px;color:var(--ink2);line-height:1.82;}
+.feat-body p+p{margin-top:14px;}
+.feat-btns{margin-top:36px;display:flex;gap:12px;flex-wrap:wrap;}
+.feat-side{display:flex;flex-direction:column;background:var(--paper);}
+.feat-photo{flex:1;overflow:hidden;position:relative;min-height:260px;}
+.feat-photo img{transition:transform .7s ease;}
+.feat-photo:hover img{transform:scale(1.03);}
+.countdown{padding:32px 32px 28px;}
+.cd-label{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
+.cd-blocks{display:flex;gap:8px;}
+.cd-block{flex:1;background:#fff;border:1px solid var(--rule);padding:14px 8px;text-align:center;}
+.cd-num{font-family:'DM Serif Display',serif;font-size:26px;color:var(--blue);display:block;line-height:1;}
+.cd-lbl{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:3px;display:block;}
+.feat-facts{padding:20px 32px 32px;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.fact-num{font-family:'DM Serif Display',serif;font-size:26px;color:var(--red);display:block;line-height:1;}
+.fact-lbl{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:3px;display:block;}
+
+/* ── EVENTS ── */
+#events{background:var(--paper);}
+.events-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--rule);}
+.ecard{padding:40px 44px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:#fff;position:relative;overflow:hidden;transition:background .2s;}
+.ecard:nth-child(even){border-right:none;}
+.ecard:hover{background:var(--blue-lt);}
+.ecard::after{content:'';position:absolute;bottom:0;left:0;height:2px;width:0;background:var(--blue);transition:width .35s;}
+.ecard:hover::after{width:100%;}
+.ecard-n{font-family:'DM Serif Display',serif;font-size:64px;color:rgba(27,58,107,.07);position:absolute;top:20px;right:28px;line-height:1;}
+.ecard-stage{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.ecard-stage.next{color:var(--red);}
+.ecard-city{font-family:'DM Serif Display',serif;font-size:28px;color:var(--ink);line-height:1.05;letter-spacing:-.01em;}
+.ecard-country{font-family:'Cormorant',serif;font-size:17px;font-style:italic;color:var(--muted);margin:3px 0 14px;}
+.ecard-date{font-size:14px;color:var(--ink2);display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.ecard-date::before{content:'';width:14px;height:1px;background:var(--red);flex-shrink:0;}
+.ecard-text{font-size:14px;color:var(--muted);line-height:1.72;}
+.ecard-foot{margin-top:20px;padding-top:16px;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;}
+.ecard-status{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.ecard-status.done::before{content:'✓ ';color:#3A8C4A;}
+.ecard-status.next-up{color:var(--red);}
+.ecard-link{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:1px;transition:border-color .2s;}
+.ecard-link:hover{border-color:var(--blue);}
+.ecard-worlds{grid-column:span 2;background:var(--blue);padding:36px 44px;display:flex;align-items:center;justify-content:space-between;gap:40px;border-right:none;border-bottom:none;}
+.ecard-worlds:hover{background:var(--blue2);}
+.ecard-worlds::after{display:none;}
+.ew-eye{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px;}
+.ew-city{font-family:'DM Serif Display',serif;font-size:30px;color:#fff;line-height:1;}
+.ew-country{font-family:'Cormorant',serif;font-size:18px;font-style:italic;color:rgba(255,255,255,.5);margin-top:3px;}
+.ew-date{font-size:15px;color:rgba(255,255,255,.65);margin-bottom:6px;}
+.ew-sub{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+.ew-link{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.3);padding:8px 18px;text-decoration:none;transition:background .2s;}
+.ew-link:hover{background:rgba(255,255,255,.1);}
+
+/* ── PHOTO STRIP ── */
+#photos{background:var(--white);}
+.photo-strip{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;grid-template-rows:280px 240px;gap:4px;}
+.ps-item{overflow:hidden;position:relative;background:var(--paper);}
+.ps-item.tall{grid-row:span 2;}
+.ps-item img{transition:transform .6s ease,filter .4s;}
+.ps-item:hover img{transform:scale(1.05);filter:brightness(1.06);}
+.ps-caption{position:absolute;bottom:0;left:0;right:0;padding:12px 16px;background:linear-gradient(transparent,rgba(27,58,107,.65));font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);}
+
+/* ── ABOUT ── */
+#about{background:var(--paper);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.about-text p{font-size:15.5px;color:var(--ink2);line-height:1.82;}
+.about-text p+p{margin-top:14px;}
+.about-quote{margin:28px 0;padding:4px 24px;border-left:3px solid var(--blue);}
+.about-quote blockquote{font-family:'Cormorant',serif;font-size:21px;font-style:italic;color:var(--ink2);line-height:1.5;}
+.about-quote cite{display:block;margin-top:10px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-style:normal;}
+.kata-table{margin-top:4px;}
+.kata-row{display:grid;grid-template-columns:185px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);}
+.kata-row:first-child{border-top:1px solid var(--rule);}
+.kata-name{font-family:'DM Serif Display',serif;font-size:13.5px;font-style:italic;color:var(--blue);}
+.kata-desc{font-size:13.5px;color:var(--muted);line-height:1.65;}
+.videos-col{display:flex;flex-direction:column;gap:24px;}
+.vwrap{aspect-ratio:16/9;overflow:hidden;border:1px solid var(--rule);}
+.vwrap iframe{width:100%;height:100%;border:none;display:block;}
+.vlabel{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:8px;}
+
+/* ── MORE PHOTOS MOSAIC ── */
+#gallery2{background:var(--white);}
+.mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:220px 220px;gap:4px;}
+.mosaic .m1{grid-column:span 2;grid-row:span 2;}
+.mosaic .m2,.mosaic .m3,.mosaic .m4,.mosaic .m5{grid-column:span 1;}
+.mitem{overflow:hidden;position:relative;background:var(--paper);}
+.mitem img{transition:transform .6s ease;}
+.mitem:hover img{transform:scale(1.06);}
+
+/* ── SPONSORSHIP ── */
+#sponsorship{background:var(--paper);border-top:1px solid var(--rule);}
+.reach-row{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);margin-bottom:48px;background:#fff;}
+.rcell{padding:32px 24px;border-right:1px solid var(--rule);text-align:center;}
+.rcell:last-child{border-right:none;}
+.rcell-icon{font-size:24px;margin-bottom:12px;}
+.rcell-num{font-family:'DM Serif Display',serif;font-size:28px;color:var(--blue);display:block;line-height:1;}
+.rcell-lbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:5px;display:block;}
+.pkgs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule);}
+.pkg{padding:40px 36px;border-right:1px solid var(--rule);background:#fff;transition:background .2s;}
+.pkg:last-child{border-right:none;}
+.pkg:hover{background:var(--blue-lt);}
+.pkg-feat{background:var(--blue);color:#fff;}
+.pkg-feat:hover{background:var(--blue2);}
+.pkg-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.pkg-feat .pkg-tag{color:rgba(255,255,255,.4);}
+.pkg-tier{font-family:'DM Serif Display',serif;font-size:26px;color:var(--ink);letter-spacing:-.01em;}
+.pkg-feat .pkg-tier{color:#fff;}
+.pkg-sub{font-family:'Cormorant',serif;font-size:16px;font-style:italic;color:var(--muted);margin-bottom:24px;margin-top:2px;}
+.pkg-feat .pkg-sub{color:rgba(255,255,255,.45);}
+.pkg-div{height:1px;background:var(--rule);margin-bottom:20px;}
+.pkg-feat .pkg-div{background:rgba(255,255,255,.15);}
+.pkg-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.pkg-list li{font-size:13.5px;color:var(--ink2);display:flex;align-items:start;gap:8px;line-height:1.55;}
+.pkg-feat .pkg-list li{color:rgba(255,255,255,.75);}
+.pkg-list li::before{content:'→';color:var(--blue);flex-shrink:0;font-size:12px;margin-top:1px;}
+.pkg-feat .pkg-list li::before{color:rgba(255,255,255,.4);}
+.pkg-action{margin-top:28px;}
+.cta-bar{background:var(--blue);padding:48px 52px;margin-top:3px;display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;}
+.cta-bar h3{font-family:'DM Serif Display',serif;font-size:26px;color:#fff;letter-spacing:-.01em;}
+.cta-bar p{font-size:14.5px;color:rgba(255,255,255,.65);max-width:520px;line-height:1.72;margin-top:8px;}
+
+/* ── LINKS ── */
+#links{background:var(--paper);border-top:1px solid var(--rule);}
+.links-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);margin-top:40px;margin-bottom:60px;}
+.ext-link{display:flex;flex-direction:column;gap:8px;padding:24px 24px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink);background:#fff;transition:background .2s;}
+.ext-link:hover{background:var(--blue-lt);}
+.ext-link:nth-child(4n){border-right:none;}
+.ext-link:nth-last-child(-n+4){border-bottom:none;}
+.ext-icon{font-size:18px;}
+.ext-name{font-family:'DM Serif Display',serif;font-size:15px;color:var(--blue);}
+.ext-desc{font-size:12.5px;color:var(--muted);line-height:1.5;}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);padding:56px 0 36px;}
+.foot-inner{max-width:1200px;margin:0 auto;padding:0 40px;}
+.foot-top{display:flex;align-items:start;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:28px;}
+.foot-logo{font-family:'DM Serif Display',serif;font-size:20px;color:#fff;}
+.foot-logo em{font-style:italic;color:rgba(255,255,255,.4);}
+.foot-tag{font-size:12.5px;color:rgba(255,255,255,.35);margin-top:5px;}
+.foot-nav{display:flex;gap:24px;flex-wrap:wrap;}
+.foot-nav a{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}
+.foot-nav a:hover{color:#fff;}
+.foot-copy{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:rgba(255,255,255,.25);}
+.foot-copy a{color:rgba(255,255,255,.4);text-decoration:none;}
+.foot-copy a:hover{color:#fff;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .nav-links,.nav-cta{display:none;}
+  .nav-inner{padding:0 24px;}
+  #hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-left{padding:60px 24px;}
+  .feat-grid{grid-template-columns:1fr;}
+  .feat-side{display:none;}
+  .events-grid{grid-template-columns:1fr;}
+  .ecard:nth-child(even){border-right:none;}
+  .ecard-worlds{grid-column:span 1;}
+  .photo-strip{grid-template-columns:1fr 1fr;grid-template-rows:200px 200px 200px;}
+  .ps-item.tall{grid-row:span 1;}
+  .about-grid{grid-template-columns:1fr;gap:40px;}
+  .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:200px 200px 200px;}
+  .mosaic .m1{grid-column:span 2;}
+  .pkgs{grid-template-columns:1fr;}
+  .pkg{border-right:none;border-bottom:1px solid var(--rule);}
+  .pkg:last-child{border-bottom:none;}
+  .reach-row{grid-template-columns:1fr 1fr;}
+  .links-grid{grid-template-columns:1fr 1fr;}
+  .ext-link:nth-child(2n){border-right:none;}
+  .cta-bar{flex-direction:column;}
+  .container{padding:0 24px;}
+  .strip{padding:12px 24px;font-size:12px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">Kata <em>World Series</em></a>
+    <ul class="nav-links">
+      <li><a href="#featured">Next Event</a></li>
+      <li><a href="#events">Series</a></li>
+      <li><a href="#photos">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#sponsorship">Sponsor</a></li>
+      <li><a href="#links">Links</a></li>
+    </ul>
+    <a class="nav-cta" href="#sponsorship">Become a Partner</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">IJF Official Competition Series · 2026</p>
+    <h1 class="hero-title">Kata<br>World<br>Series</h1>
+    <p class="hero-title-it">The Art of Judo</p>
+    <p class="hero-text">An international circuit celebrating the mastery, tradition and philosophy of judo kata. Elite specialists from across five continents compete in the most prestigious kata series organised by the International Judo Federation.</p>
+    <div class="hero-btns">
+      <a class="btn btn-white" href="#featured">Next Event — Laval 2026</a>
+      <a class="btn btn-outline-white" href="#sponsorship">Partner With Us</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- Veterans Judo Kata Championships — Wikimedia Commons CC BY-SA -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Veterans_judo_kata_championships.jpg/1000px-Veterans_judo_kata_championships.jpg" alt="Kata competition on tatami" onerror="this.parentNode.style.background='var(--blue2)';this.style.display='none'"/>
+    <div class="hero-right-overlay"></div>
+    <div class="hero-stat-bar">
+      <div class="hstat"><span class="hstat-num">3</span><span class="hstat-lbl">Continents · 2026</span></div>
+      <div class="hstat"><span class="hstat-num">200+</span><span class="hstat-lbl">Countries Reached</span></div>
+      <div class="hstat"><span class="hstat-num">11</span><span class="hstat-lbl">Kata Categories</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <strong>Next Stage:</strong> Laval, Québec · Canada
+  <span class="sep">|</span>
+  July 4, 2026
+  <span class="sep">|</span>
+  Final stage before the World Championships in Sarajevo
+</div>
+
+<!-- FEATURED EVENT -->
+<section id="featured" class="section" style="padding-top:48px;">
+  <div class="container">
+    <div class="sh">
+      <p class="sh-eye">Featured Event</p>
+      <h2 class="sh-title">Next Stage — <em>Laval</em></h2>
+      <p class="sh-sub">The North American debut of the Kata World Series. The final competitive stage before the World Championships in Sarajevo.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-main">
+        <div class="feat-tag">▶ Stage 3 · Next Event</div>
+        <div class="feat-city">La<em>val</em></div>
+        <div class="feat-country">Québec, Canada</div>
+        <div class="feat-date">July 4, 2026</div>
+        <div class="feat-body">
+          <p>The Laval Kata World Series is a historic first — the IJF Kata World Series arrives in North America. Hosted in the greater Montréal area, this landmark event brings the world's finest kata specialists to Canadian tatami for the very first time as part of the official IJF circuit.</p>
+          <p>Competitors will contest eleven categories spanning Cadets through Seniors across all major disciplines including Nage-no-Kata, Katame-no-Kata, Kime-no-Kata, Ju-no-Kata, Kodokan Goshin-Jutsu, Koshiki-no-Kata and Itsutsu-no-Kata. Results count toward the IJF Kata World Rankings, seeding athletes at the championships in Sarajevo.</p>
+        </div>
+        <div class="feat-btns">
+          <a class="btn btn-red" href="https://www.ijf.org/competition/3219" target="_blank" rel="noopener">Official IJF Page</a>
+          <a class="btn btn-outline" href="#sponsorship">Sponsor This Event</a>
+        </div>
+      </div>
+      <div class="feat-side">
+        <div class="feat-photo">
+          <!-- 2024 EIJC Kata – Kodokan Goshin Jutsu buki — Wikimedia Commons CC BY-SA -->
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_buki.jpg/800px-2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_buki.jpg" alt="Kodokan Goshin Jutsu at European IJF Kata Championships 2024" onerror="this.parentNode.style.background='var(--blue-lt)';this.style.display='none'"/>
+        </div>
+        <div class="countdown">
+          <div class="cd-label">Countdown to the event</div>
+          <div class="cd-blocks">
+            <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-lbl">Days</span></div>
+            <div class="cd-block"><span class="cd-num" id="cd-hours">--</span><span class="cd-lbl">Hours</span></div>
+            <div class="cd-block"><span class="cd-num" id="cd-mins">--</span><span class="cd-lbl">Min</span></div>
+            <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-lbl">Sec</span></div>
+          </div>
+        </div>
+        <div class="feat-facts">
+          <div><span class="fact-num">30+</span><span class="fact-lbl">Nations expected</span></div>
+          <div><span class="fact-num">11</span><span class="fact-lbl">Kata categories</span></div>
+          <div><span class="fact-num">300+</span><span class="fact-lbl">Athletes expected</span></div>
+          <div><span class="fact-num">July 4</span><span class="fact-lbl">Competition date</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="section" style="padding-top:32px;background:var(--paper);">
+  <div class="container">
+    <div class="sh">
+      <p class="sh-eye">The 2026 Series</p>
+      <h2 class="sh-title">All <em>Events</em></h2>
+      <p class="sh-sub">Four stages across three continents — each building toward the World Kata Championships. Results feed the IJF Kata World Rankings.</p>
+    </div>
+    <div class="events-grid">
+
+      <div class="ecard">
+        <div class="ecard-n">01</div>
+        <div class="ecard-stage">Stage 1 · Spain</div>
+        <div class="ecard-city">Gijón</div>
+        <div class="ecard-country">Asturias, Spain</div>
+        <div class="ecard-date">January 25, 2026</div>
+        <p class="ecard-text">Season opener on the Bay of Biscay. A historic milestone — the first IJF kata competition in Spain and the first-ever participation of cadets in an IJF kata event. 130 competitors from 10 countries. Spanish pairs dominated on home soil, closely challenged by Italy.</p>
+        <div class="ecard-foot">
+          <span class="ecard-status done">Completed</span>
+          <a class="ecard-link" href="https://www.ijf.org/competition/3200" target="_blank" rel="noopener">Results on IJF.org →</a>
+        </div>
+      </div>
+
+      <div class="ecard">
+        <div class="ecard-n">02</div>
+        <div class="ecard-stage">Stage 2 · Belgium</div>
+        <div class="ecard-city">Louvain-la-Neuve</div>
+        <div class="ecard-country">Brussels Region, Belgium</div>
+        <div class="ecard-date">March 7, 2026</div>
+        <p class="ecard-text">Record-breaking event: 222 competitors from 16 countries across 3 continents. Eleven different nations won medals, confirming the worldwide depth of kata. Organised by Judo Wallonie Bruxelles. A judge examination and training camp were held alongside the competition.</p>
+        <div class="ecard-foot">
+          <span class="ecard-status done">Completed</span>
+          <a class="ecard-link" href="https://www.ijf.org/competition/3201" target="_blank" rel="noopener">Results on IJF.org →</a>
+        </div>
+      </div>
+
+      <div class="ecard" style="border-left:3px solid var(--red);padding-left:41px;">
+        <div class="ecard-n" style="color:rgba(184,23,42,.1);">03</div>
+        <div class="ecard-stage next">Stage 3 · Canada — Next Event</div>
+        <div class="ecard-city">Laval</div>
+        <div class="ecard-country">Québec, Canada</div>
+        <div class="ecard-date">July 4, 2026</div>
+        <p class="ecard-text">The North American debut of the series. Located just north of Montréal, Laval hosts this landmark event — the final stage before the World Championships. The ideal moment to secure ranking points and championship seeding before Sarajevo.</p>
+        <div class="ecard-foot">
+          <span class="ecard-status next-up">Registration open</span>
+          <a class="ecard-link" href="https://www.ijf.org/competition/3219" target="_blank" rel="noopener" style="color:var(--red);border-color:rgba(184,23,42,.25);">Register on IJF.org →</a>
+        </div>
+      </div>
+
+      <div class="ecard">
+        <div class="ecard-n" style="color:rgba(27,58,107,.06);">★</div>
+        <div class="ecard-stage">Season Finale · Bosnia &amp; Herzegovina</div>
+        <div class="ecard-city">Sarajevo</div>
+        <div class="ecard-country">Bosnia &amp; Herzegovina</div>
+        <div class="ecard-date">September 26–27, 2026</div>
+        <p class="ecard-text">The pinnacle of kata competition. The IJF Kata World Championships bring together the world's top kata specialists seeded by the Kata World Series rankings. Only national delegations may compete — making this the ultimate honour in kata.</p>
+        <div class="ecard-foot">
+          <span class="ecard-status">World Championships</span>
+          <a class="ecard-link" href="https://www.ijf.org" target="_blank" rel="noopener">IJF.org →</a>
+        </div>
+      </div>
+
+      <div class="ecard-worlds">
+        <div>
+          <div class="ew-eye">Series Origin · 2025 Inaugural Edition</div>
+          <div class="ew-city">Louvain-la-Neuve</div>
+          <div class="ew-country">Belgium · March 8, 2025</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="ew-date">First-ever Kata World Series event</div>
+          <div class="ew-sub">212 competitors · 19 nations · Historic premiere</div>
+          <a class="ew-link" href="https://www.ijf.org/competition/3022" target="_blank" rel="noopener">View 2025 Inaugural Edition →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP -->
+<section id="photos" class="section" style="padding-top:32px;padding-bottom:0;background:var(--white);">
+  <div class="container">
+    <div class="sh">
+      <p class="sh-eye">Gallery</p>
+      <h2 class="sh-title">Kata in <em>Action</em></h2>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:4px;">
+    <div class="photo-strip">
+
+      <!-- TALL: Veterans Judo Kata Championships — Wikimedia CC BY-SA -->
+      <div class="ps-item tall">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Veterans_judo_kata_championships.jpg/800px-Veterans_judo_kata_championships.jpg" alt="Veterans Kata Championships" onerror="this.style.display='none'"/>
+        <div class="ps-caption">Veterans Kata Championships</div>
+      </div>
+
+      <!-- All Japan Kime no kata 2019 — Wikimedia CC BY-SA -->
+      <div class="ps-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/All_Japan%E3%80%8CKime_no_kata%E3%80%8D2019.jpg/800px-All_Japan%E3%80%8CKime_no_kata%E3%80%8D2019.jpg" alt="All Japan Kime-no-Kata 2019" onerror="this.style.display='none'"/>
+        <div class="ps-caption">All Japan Kime-no-Kata 2019</div>
+      </div>
+
+      <!-- 2024 EIJC Kata kotegaeshi — Wikimedia CC BY-SA -->
+      <div class="ps-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_kotegaeshi.jpg/700px-2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_kotegaeshi.jpg" alt="Kodokan Goshin Jutsu – kotegaeshi" onerror="this.style.display='none'"/>
+        <div class="ps-caption">2024 EIJC Kata · Goshin Jutsu</div>
+      </div>
+
+      <!-- SEA Games 2019 — Wikimedia CC BY-SA -->
+      <div class="ps-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/SEA_Games_Philippines_official_2019.jpg/900px-SEA_Games_Philippines_official_2019.jpg" alt="SEA Games Philippines 2019 judo kata" onerror="this.style.display='none'"/>
+        <div class="ps-caption">SEA Games 2019 · Kata</div>
+      </div>
+
+      <!-- World KATA Champion team Japan 2014 — Wikimedia CC BY-SA -->
+      <div class="ps-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/World_KATA_Champion_team_Japan_2014.JPG/800px-World_KATA_Champion_team_Japan_2014.JPG" alt="World Kata Champion Team Japan 2014" onerror="this.style.display='none'"/>
+        <div class="ps-caption">World Kata Champions · Japan 2014</div>
+      </div>
+
+      <!-- 2024 EIJC Kata furioroshi — Wikimedia CC BY-SA -->
+      <div class="ps-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_furioroshi.jpg/700px-2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_furioroshi.jpg" alt="Kata technique – furioroshi" onerror="this.style.display='none'"/>
+        <div class="ps-caption">2024 EIJC · Furioroshi</div>
+      </div>
+
+      <!-- 2024 EIJC morotedzuki — Wikimedia CC BY-SA -->
+      <div class="ps-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_morotedzuki.jpg/700px-2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_morotedzuki.jpg" alt="Kata technique – morotedzuki" onerror="this.style.display='none'"/>
+        <div class="ps-caption">2024 EIJC · Morotedzuki</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECOND MOSAIC -->
+<section id="gallery2" class="section" style="padding-top:4px;padding-bottom:0;background:var(--white);">
+  <div class="container" style="padding-bottom:60px;">
+    <div class="mosaic">
+
+      <!-- 2024 EIJC buki — LARGE TILE -->
+      <div class="mitem m1">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_buki.jpg/900px-2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_buki.jpg" alt="European IJF Kata Championships 2024 – Kodokan Goshin Jutsu buki" onerror="this.style.display='none'"/>
+      </div>
+
+      <!-- 2024 EIJC kakaedori — Wikimedia CC BY-SA -->
+      <div class="mitem m2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_kakaedori.jpg/700px-2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_kakaedori.jpg" alt="2024 EIJC Kata – kakaedori" onerror="this.style.display='none'"/>
+      </div>
+
+      <!-- Haraigoshi — Wikimedia CC BY-SA -->
+      <div class="mitem m3">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Haraigoshi.jpg/600px-Haraigoshi.jpg" alt="Harai-goshi judo kata technique" onerror="this.style.display='none'"/>
+      </div>
+
+      <!-- 2024 EIJC osotootoshi — Wikimedia CC BY-SA -->
+      <div class="mitem m4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_osotootoshi.jpg/600px-2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_osotootoshi.jpg" alt="2024 EIJC Kata – osotootoshi" onerror="this.style.display='none'"/>
+      </div>
+
+      <!-- 2024 EIJC chokudzuki — Wikimedia CC BY-SA -->
+      <div class="mitem m5">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_chokudzuki.jpg/600px-2024_EIJC_Kata_-_Kodokan_Goshin_Jutsu_chokudzuki.jpg" alt="2024 EIJC Kata – chokudzuki" onerror="this.style.display='none'"/>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);">Photos: Wikimedia Commons · CC BY-SA · 2024 European IJF Kata Championships &amp; IJF Official Events</p>
+  </div>
+</section>
+
+<!-- ABOUT KATA -->
+<section id="about" class="section" style="background:var(--paper);">
+  <div class="container">
+    <div class="sh">
+      <p class="sh-eye">The Discipline</p>
+      <h2 class="sh-title">What is <em>Kata?</em></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Kata — literally meaning <em>form</em> — is one of the two fundamental pillars of judo alongside randori (free practice). In kata, two practitioners, Tori and Uke, perform a precise sequence of pre-arranged techniques in perfect synchrony, expressing the deepest principles of judo in their purest form.</p>
+        <p>Founded by Jigoro Kano in the 1880s, kata embodies the philosophical depth of judo: precision, mutual respect, technical mastery, and the principle of <em>seiryoku-zenyo</em> — maximum efficiency with minimum effort. The Kodokan recognises nine official kata, each exploring a distinct dimension of the art.</p>
+        <p>In the IJF Kata World Series, pairs are judged by internationally certified kata officials on technical accuracy, timing, balance, mutual understanding and the overall expression of judo's philosophy.</p>
+        <div class="about-quote">
+          <blockquote>"The idea is to create a world kata circuit that will allow us to determine a ranking list and seed players for the world championships. Our goal is to have 6 tournaments per year spread across five continents."</blockquote>
+          <cite>Jean-Luc Rougé, 10th Dan · Chair, IJF Kata Commission</cite>
+        </div>
+        <div class="kata-table">
+          <div class="kata-row"><span class="kata-name">Nage-no-Kata</span><span class="kata-desc">Forms of throwing — 15 throws across 5 groups. Required for the black belt examination.</span></div>
+          <div class="kata-row"><span class="kata-name">Katame-no-Kata</span><span class="kata-desc">Forms of grappling — 15 ground techniques: pins, strangulations and armlocks.</span></div>
+          <div class="kata-row"><span class="kata-name">Kime-no-Kata</span><span class="kata-desc">Forms of decisive technique — 20 techniques for combative situations, armed and unarmed.</span></div>
+          <div class="kata-row"><span class="kata-name">Ju-no-Kata</span><span class="kata-desc">Forms of gentleness — 15 techniques demonstrating yielding and the principle of non-resistance.</span></div>
+          <div class="kata-row"><span class="kata-name">Kodokan Goshin-Jutsu</span><span class="kata-desc">Modern self-defence forms — 21 techniques against unarmed and armed aggression.</span></div>
+          <div class="kata-row"><span class="kata-name">Koshiki-no-Kata</span><span class="kata-desc">Classical forms — ancient Kito-ryū techniques preserved by Kano, representing the essence of attack and defence.</span></div>
+          <div class="kata-row"><span class="kata-name">Itsutsu-no-Kata</span><span class="kata-desc">Forms of five — the most philosophical kata, representing the five elements of the universe.</span></div>
+        </div>
+      </div>
+      <div class="videos-col">
+        <div>
+          <div class="vwrap">
+            <iframe src="https://www.youtube.com/embed/m3XzJFuWwss" title="Nage-no-Kata – Kodokan Official" allowfullscreen></iframe>
+          </div>
+          <p class="vlabel">Nage-no-Kata · Kodokan Official Instructional Film</p>
+        </div>
+        <div>
+          <div class="vwrap">
+            <iframe src="https://www.youtube.com/embed/6RQI3PEaYRk" title="IJF Kata World Series Highlights" allowfullscreen></iframe>
+          </div>
+          <p class="vlabel">IJF Kata World Series 2025 · Louvain-la-Neuve Highlights</p>
+        </div>
+        <div style="background:var(--blue);padding:28px;margin-top:4px;">
+          <p style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:12px;">Key Links</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="https://www.ijf.org/competition/3219" target="_blank" rel="noopener" style="color:#fff;font-size:13.5px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:8px;">Laval 2026 — Register on IJF.org →</a>
+            <a href="https://judotv.com" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65);font-size:13.5px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:8px;">Watch Live on JudoTV →</a>
+            <a href="https://kdkjd.org/kata/" target="_blank" rel="noopener" style="color:rgba(255,255,255,.65);font-size:13.5px;text-decoration:none;">Kodokan Kata Reference →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPONSORSHIP -->
+<section id="sponsorship" class="section">
+  <div class="container">
+    <div class="sh">
+      <p class="sh-eye">Partnerships</p>
+      <h2 class="sh-title">Sponsor the <em>Series</em></h2>
+      <p class="sh-sub">Associate your brand with the most prestigious kata competition circuit in the world. Local presence in Laval, international reach through the IJF's global network and JudoTV broadcast.</p>
+    </div>
+    <div class="reach-row">
+      <div class="rcell"><div class="rcell-icon">🌍</div><span class="rcell-num">200+</span><span class="rcell-lbl">Countries via IJF</span></div>
+      <div class="rcell"><div class="rcell-icon">🥋</div><span class="rcell-num">40M+</span><span class="rcell-lbl">Judo Practitioners</span></div>
+      <div class="rcell"><div class="rcell-icon">📺</div><span class="rcell-num">JudoTV</span><span class="rcell-lbl">Live Broadcast</span></div>
+      <div class="rcell"><div class="rcell-icon">🏅</div><span class="rcell-num">3</span><span class="rcell-lbl">Continents · 2026</span></div>
+    </div>
+    <div class="pkgs">
+      <div class="pkg">
+        <div class="pkg-tag">Community</div>
+        <div class="pkg-tier">Bronze</div>
+        <div class="pkg-sub">Local Partner</div>
+        <div class="pkg-div"></div>
+        <ul class="pkg-list">
+          <li>Logo on event banners at venue</li>
+          <li>Brand mention in official programme</li>
+          <li>Social media acknowledgement</li>
+          <li>Listing on event website</li>
+          <li>2 event admission passes</li>
+        </ul>
+        <div class="pkg-action"><a class="btn btn-outline" href="mailto:sponsor@kataworldseries.com">Enquire</a></div>
+      </div>
+      <div class="pkg pkg-feat">
+        <div class="pkg-tag">Recommended</div>
+        <div class="pkg-tier">Gold</div>
+        <div class="pkg-sub">Official Event Partner</div>
+        <div class="pkg-div"></div>
+        <ul class="pkg-list">
+          <li>Prominent logo on all tatami-side banners</li>
+          <li>Brand on competition photo backdrop</li>
+          <li>Feature in IJF official event coverage</li>
+          <li>Logo on digital broadcasts via JudoTV</li>
+          <li>Dedicated social media feature post</li>
+          <li>Award presentation opportunity</li>
+          <li>10 VIP passes + hospitality access</li>
+          <li>Worldwide visibility via IJF.org</li>
+        </ul>
+        <div class="pkg-action"><a class="btn btn-white" href="mailto:sponsor@kataworldseries.com">Enquire</a></div>
+      </div>
+      <div class="pkg">
+        <div class="pkg-tag">Premium</div>
+        <div class="pkg-tier">Platinum</div>
+        <div class="pkg-sub">Series Title Sponsor</div>
+        <div class="pkg-div"></div>
+        <ul class="pkg-list">
+          <li>Title naming rights for the series or event</li>
+          <li>Premium placement on all worldwide materials</li>
+          <li>Feature in all IJF press releases</li>
+          <li>Broadcast integration across all series events</li>
+          <li>Exclusive athlete partnership opportunities</li>
+          <li>Custom brand activation zone at venue</li>
+          <li>20 VIP passes + official dinner</li>
+          <li>Year-round visibility on IJF Kata pages</li>
+        </ul>
+        <div class="pkg-action"><a class="btn btn-blue" href="mailto:sponsor@kataworldseries.com">Enquire</a></div>
+      </div>
+    </div>
+    <div class="cta-bar">
+      <div>
+        <h3>Ready to become a partner?</h3>
+        <p>Contact our team to discuss a custom package — local visibility in Québec, international reach through the IJF, or both. We will build a partnership that puts your brand at the heart of a growing global sport.</p>
+      </div>
+      <a class="btn btn-white" href="mailto:sponsor@kataworldseries.com">Contact Us →</a>
+    </div>
+  </div>
+</section>
+
+<!-- LINKS -->
+<section id="links" class="section">
+  <div class="container">
+    <div class="sh">
+      <p class="sh-eye">Resources</p>
+      <h2 class="sh-title">Official <em>Links</em></h2>
+    </div>
+    <div class="links-grid">
+      <a class="ext-link" href="https://www.ijf.org" target="_blank" rel="noopener"><span class="ext-icon">🌐</span><span class="ext-name">IJF.org</span><span class="ext-desc">International Judo Federation — official governing body</span></a>
+      <a class="ext-link" href="https://www.ijf.org/competition/3219" target="_blank" rel="noopener"><span class="ext-icon">📋</span><span class="ext-name">Laval 2026</span><span class="ext-desc">Official IJF page — next stage, Canada</span></a>
+      <a class="ext-link" href="https://www.ijf.org/competition/3201" target="_blank" rel="noopener"><span class="ext-icon">🇧🇪</span><span class="ext-name">Louvain 2026</span><span class="ext-desc">Stage 2 — results and information</span></a>
+      <a class="ext-link" href="https://www.ijf.org/competition/3200" target="_blank" rel="noopener"><span class="ext-icon">🇪🇸</span><span class="ext-name">Gijón 2026</span><span class="ext-desc">Stage 1 — results and information</span></a>
+      <a class="ext-link" href="https://judocanada.org" target="_blank" rel="noopener"><span class="ext-icon">🇨🇦</span><span class="ext-name">Judo Canada</span><span class="ext-desc">National federation — host of the Laval event</span></a>
+      <a class="ext-link" href="https://judotv.com" target="_blank" rel="noopener"><span class="ext-icon">📺</span><span class="ext-name">JudoTV</span><span class="ext-desc">Official broadcast partner — live and on demand</span></a>
+      <a class="ext-link" href="https://kdkjd.org/kata/" target="_blank" rel="noopener"><span class="ext-icon">🎌</span><span class="ext-name">Kodokan Global</span><span class="ext-desc">Kata reference, history and educational resources</span></a>
+      <a class="ext-link" href="https://academy.ijf.org" target="_blank" rel="noopener"><span class="ext-icon">🎓</span><span class="ext-name">IJF Academy</span><span class="ext-desc">Education, kata videos and judge resources</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div>
+        <div class="foot-logo">Kata <em>World Series</em></div>
+        <div class="foot-tag">The Art of Judo · On the World Stage · IJF Official Series</div>
+      </div>
+      <nav class="foot-nav">
+        <a href="#featured">Next Event</a>
+        <a href="#events">All Events</a>
+        <a href="#photos">Gallery</a>
+        <a href="#about">About Kata</a>
+        <a href="#sponsorship">Sponsorship</a>
+        <a href="#links">Links</a>
+        <a href="https://www.ijf.org" target="_blank">IJF.org</a>
+      </nav>
+    </div>
+    <div class="foot-copy">
+      <span>An official IJF Kata Commission event series · All rights reserved</span>
+      <span>Sponsorship: <a href="mailto:sponsor@kataworldseries.com">sponsor@kataworldseries.com</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const target = new Date('2026-07-04T09:00:00').getTime();
+function tick(){
+  const diff = target - Date.now();
+  if(diff<=0){['cd-days','cd-hours','cd-mins','cd-secs'].forEach(i=>document.getElementById(i).textContent='0');return;}
+  document.getElementById('cd-days').textContent  = String(Math.floor(diff/86400000)).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(Math.floor(diff%86400000/3600000)).padStart(2,'0');
+  document.getElementById('cd-mins').textContent  = String(Math.floor(diff%3600000/60000)).padStart(2,'0');
+  document.getElementById('cd-secs').textContent  = String(Math.floor(diff%60000/1000)).padStart(2,'0');
+}
+tick(); setInterval(tick,1000);
+</script>
+</body>
+</html>
