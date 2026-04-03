@@ -194,8 +194,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--blue);borde
 .rcell-icon{font-size:24px;margin-bottom:12px;}
 .rcell-num{font-family:'DM Serif Display',serif;font-size:28px;color:var(--blue);display:block;line-height:1;}
 .rcell-lbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:5px;display:block;}
-.pkgs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule);}
-.pkg{padding:40px 36px;border-right:1px solid var(--rule);background:#fff;transition:background .2s;}
+.pkgs{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--rule);}
+.pkg{padding:40px 44px;border-right:1px solid var(--rule);background:#fff;transition:background .2s;}
 .pkg:last-child{border-right:none;}
 .pkg:hover{background:var(--blue-lt);}
 .pkg-feat{background:var(--blue);color:#fff;}
@@ -204,6 +204,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--blue);borde
 .pkg-feat .pkg-tag{color:rgba(255,255,255,.4);}
 .pkg-tier{font-family:'DM Serif Display',serif;font-size:26px;color:var(--ink);letter-spacing:-.01em;}
 .pkg-feat .pkg-tier{color:#fff;}
+.pkg-price{font-size:13px;color:var(--blue);letter-spacing:.04em;font-weight:500;margin-top:4px;margin-bottom:2px;}
+.pkg-feat .pkg-price{color:rgba(255,255,255,.65);}
 .pkg-sub{font-family:'Cormorant',serif;font-size:16px;font-style:italic;color:var(--muted);margin-bottom:24px;margin-top:2px;}
 .pkg-feat .pkg-sub{color:rgba(255,255,255,.45);}
 .pkg-div{height:1px;background:var(--rule);margin-bottom:20px;}
@@ -213,6 +215,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--blue);borde
 .pkg-feat .pkg-list li{color:rgba(255,255,255,.75);}
 .pkg-list li::before{content:'→';color:var(--blue);flex-shrink:0;font-size:12px;margin-top:1px;}
 .pkg-feat .pkg-list li::before{color:rgba(255,255,255,.4);}
+.pkg-list li.optional::before{content:'＋';color:var(--red);font-size:11px;}
+.pkg-feat .pkg-list li.optional::before{color:rgba(255,160,160,.8);}
+.pkg-optional-label{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-top:18px;margin-bottom:6px;padding-top:14px;border-top:1px solid rgba(184,23,42,.15);}
+.pkg-feat .pkg-optional-label{color:rgba(255,160,160,.8);border-top-color:rgba(255,255,255,.1);}
 .pkg-action{margin-top:28px;}
 .cta-bar{background:var(--blue);padding:48px 52px;margin-top:3px;display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;}
 .cta-bar h3{font-family:'DM Serif Display',serif;font-size:26px;color:#fff;letter-spacing:-.01em;}
@@ -261,7 +267,7 @@ footer{background:var(--ink);padding:56px 0 36px;}
   .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:200px 200px 200px;}
   .mosaic .m1{grid-column:span 2;}
   .pkgs{grid-template-columns:1fr;}
-  .pkg{border-right:none;border-bottom:1px solid var(--rule);}
+  .pkg{border-right:none;border-bottom:1px solid var(--rule);padding:36px 24px;}
   .pkg:last-child{border-bottom:none;}
   .reach-row{grid-template-columns:1fr 1fr;}
   .rcell:nth-child(2){border-right:none;}
@@ -304,7 +310,7 @@ footer{background:var(--ink);padding:56px 0 36px;}
   <span class="sep">|</span>
   <a class="cta-btn cta-btn-participant" href="PLACEHOLDER_PARTICIPANT_URL" data-en="Become a Participant" data-fr="Devenir participant">Become a Participant</a>
   <a class="cta-btn cta-btn-judge" href="PLACEHOLDER_JUDGE_URL" data-en="Become a Judge" data-fr="Devenir juge">Become a Judge</a>
-  <a class="cta-btn cta-btn-sponsor" href="mailto:mathieu.duperre@gmail.com?subject=Sponsorship%20Enquiry%20%E2%80%94%20Kata%20World%20Series%20Laval%202026" data-en="Become a Sponsor" data-fr="Devenir commanditaire">Become a Sponsor</a>
+  <a class="cta-btn cta-btn-sponsor" href="/cdn-cgi/l/email-protection#452824312d2c20306b21303520373720052228242c296b262a287a3630272f2026317816352a2b362a37362d2c35607775002b34302c373c607775600077607d75607c716077750e243124607775122a3729216077751620372c2036607775092433242960777577757773" data-en="Become a Sponsor" data-fr="Devenir commanditaire">Become a Sponsor</a>
 </div>
 
 <!-- HERO -->
@@ -592,54 +598,45 @@ footer{background:var(--ink);padding:56px 0 36px;}
       <div class="rcell"><div class="rcell-icon">🏅</div><span class="rcell-num">3</span><span class="rcell-lbl" data-en="Continents · 2026" data-fr="Continents · 2026">Continents · 2026</span></div>
     </div>
     <div class="pkgs">
+
+      <!-- LOCAL SPONSOR -->
       <div class="pkg">
         <div class="pkg-tag" data-en="Community" data-fr="Communauté">Community</div>
-        <div class="pkg-tier" data-en="Bronze" data-fr="Bronze">Bronze</div>
+        <div class="pkg-tier" data-en="Local Sponsor" data-fr="Commanditaire local">Local Sponsor</div>
+        <div class="pkg-price" data-en="$1,000 – $5,000" data-fr="1 000 $ – 5 000 $">$1,000 – $5,000</div>
         <div class="pkg-sub" data-en="Local Partner" data-fr="Partenaire local">Local Partner</div>
         <div class="pkg-div"></div>
         <ul class="pkg-list">
-          <li data-en="Logo on event banners at venue" data-fr="Logo sur les bannières de l'événement">Logo on event banners at venue</li>
-          <li data-en="Brand mention in official programme" data-fr="Mention de marque dans le programme officiel">Brand mention in official programme</li>
-          <li data-en="Social media acknowledgement" data-fr="Remerciement sur les réseaux sociaux">Social media acknowledgement</li>
-          <li data-en="Listing on event website" data-fr="Inscription sur le site de l'événement">Listing on event website</li>
-          <li data-en="2 event admission passes" data-fr="2 laissez-passer pour l'événement">2 event admission passes</li>
+          <li data-en="Logo on event banners at the venue" data-fr="Logo sur les bannières de l'événement au site">Logo on event banners at the venue</li>
+          <li data-en="Logo on printed posters distributed to attendees" data-fr="Logo sur les affiches imprimées distribuées aux participants">Logo on printed posters distributed to attendees</li>
+          <li data-en="Visibility on the live stream broadcast" data-fr="Visibilité lors de la diffusion en direct">Visibility on the live stream broadcast</li>
+          <li data-en="Visibility on the Kata World Series website" data-fr="Visibilité sur le site web de la Kata World Series">Visibility on the Kata World Series website</li>
+          <li data-en="Brand featured in all event emails sent to participants &amp; community" data-fr="Marque présente dans tous les courriels de l'événement envoyés aux participants et à la communauté">Brand featured in all event emails sent to participants &amp; community</li>
+          <li data-en="VIP lounge access with snacks — 10 invitees (full VIP event access)" data-fr="Accès au salon VIP avec collations — 10 invités (accès VIP complet à l'événement)">VIP lounge access with snacks — 10 invitees (full VIP event access)</li>
+        </ul>
+        <div class="pkg-optional-label" data-en="Optional Add-on — $1,000" data-fr="Option supplémentaire — 1 000 $">Optional Add-on — $1,000</div>
+        <ul class="pkg-list">
+          <li class="optional" data-en="A-frame advertising boards along the tatami — 3 boards per tatami for high brand exposure to athletes, judges &amp; spectators" data-fr="Panneaux publicitaires A-frame le long du tatami — 3 par tatami pour une forte visibilité auprès des athlètes, juges et spectateurs">A-frame advertising boards along the tatami — 3 boards per tatami for high brand exposure to athletes, judges &amp; spectators</li>
         </ul>
         <div class="pkg-action"><a class="btn btn-outline" href="/cdn-cgi/l/email-protection#82efe3f6eaebe7f7ace6f7f2e7f0f0e7c2e5efe3ebeeace1edef" data-en="Enquire" data-fr="Renseignements">Enquire</a></div>
       </div>
+
+      <!-- MAJOR SPONSOR -->
       <div class="pkg pkg-feat">
-        <div class="pkg-tag" data-en="Recommended" data-fr="Recommandé">Recommended</div>
-        <div class="pkg-tier" data-en="Gold" data-fr="Or">Gold</div>
+        <div class="pkg-tag" data-en="Premier" data-fr="Premier">Premier</div>
+        <div class="pkg-tier" data-en="Major Sponsor" data-fr="Commanditaire majeur">Major Sponsor</div>
+        <div class="pkg-price" data-en="$10,000 &amp; up" data-fr="10 000 $ et plus">$10,000 &amp; up</div>
         <div class="pkg-sub" data-en="Official Event Partner" data-fr="Partenaire officiel de l'événement">Official Event Partner</div>
         <div class="pkg-div"></div>
         <ul class="pkg-list">
-          <li data-en="Prominent logo on all tatami-side banners" data-fr="Logo en évidence sur toutes les bannières du tatami">Prominent logo on all tatami-side banners</li>
-          <li data-en="Brand on competition photo backdrop" data-fr="Marque sur le fond photo de la compétition">Brand on competition photo backdrop</li>
-          <li data-en="Feature in IJF official event coverage" data-fr="Mise en valeur dans la couverture officielle de la FIJ">Feature in IJF official event coverage</li>
-          <li data-en="Logo on digital broadcasts via JudoTV" data-fr="Logo sur les diffusions numériques via JudoTV">Logo on digital broadcasts via JudoTV</li>
-          <li data-en="Dedicated social media feature" data-fr="Publication dédiée sur les réseaux sociaux">Dedicated social media feature</li>
-          <li data-en="Award presentation opportunity" data-fr="Opportunité de remise de prix">Award presentation opportunity</li>
-          <li data-en="10 VIP passes + hospitality access" data-fr="10 laissez-passer VIP + accès hospitalité">10 VIP passes + hospitality access</li>
-          <li data-en="Worldwide visibility via IJF.org" data-fr="Visibilité mondiale via IJF.org">Worldwide visibility via IJF.org</li>
+          <li data-en="Everything included in the Local Sponsor package" data-fr="Tout ce qui est inclus dans le forfait Commanditaire local">Everything included in the Local Sponsor package</li>
+          <li data-en="Logo on the banner behind the podium — prime visibility during medal ceremonies" data-fr="Logo sur la bannière derrière le podium — visibilité de premier plan lors des cérémonies de remise des médailles">Logo on the banner behind the podium — prime visibility during medal ceremonies</li>
+          <li data-en="A-frame advertising boards along the tatami — 3 per tatami, included at no extra cost" data-fr="Panneaux publicitaires A-frame le long du tatami — 3 par tatami, inclus sans frais supplémentaires">A-frame advertising boards along the tatami — 3 per tatami, included at no extra cost</li>
+          <li data-en="Medal presenter at the award ceremony — your representative hands medals to champions, introduced by name on the microphone by the official host" data-fr="Présentateur de médailles lors de la cérémonie de remise des prix — votre représentant remet les médailles aux champions et est présenté par son nom au microphone par l'animateur officiel">Medal presenter at the award ceremony — your representative hands medals to champions, introduced by name on the microphone by the official host</li>
         </ul>
         <div class="pkg-action"><a class="btn btn-white" href="/cdn-cgi/l/email-protection#1974786d71707c6c377d6c697c6b6b7c597e74787075377a7674" data-en="Enquire" data-fr="Renseignements">Enquire</a></div>
       </div>
-      <div class="pkg">
-        <div class="pkg-tag" data-en="Premium" data-fr="Premium">Premium</div>
-        <div class="pkg-tier" data-en="Platinum" data-fr="Platine">Platinum</div>
-        <div class="pkg-sub" data-en="Series Title Sponsor" data-fr="Commanditaire titre de la série">Series Title Sponsor</div>
-        <div class="pkg-div"></div>
-        <ul class="pkg-list">
-          <li data-en="Title naming rights for the series or event" data-fr="Droits de dénomination pour la série ou l'événement">Title naming rights for the series or event</li>
-          <li data-en="Premium placement on all worldwide materials" data-fr="Placement premium sur tous les supports mondiaux">Premium placement on all worldwide materials</li>
-          <li data-en="Feature in all IJF press releases" data-fr="Présence dans tous les communiqués de presse FIJ">Feature in all IJF press releases</li>
-          <li data-en="Broadcast integration across all series events" data-fr="Intégration dans toutes les diffusions de la série">Broadcast integration across all series events</li>
-          <li data-en="Exclusive athlete partnership opportunities" data-fr="Opportunités exclusives de partenariat avec des athlètes">Exclusive athlete partnership opportunities</li>
-          <li data-en="Custom brand activation zone at venue" data-fr="Zone d'activation de marque personnalisée">Custom brand activation zone at venue</li>
-          <li data-en="20 VIP passes + official dinner" data-fr="20 laissez-passer VIP + dîner officiel">20 VIP passes + official dinner</li>
-          <li data-en="Year-round visibility on IJF Kata pages" data-fr="Visibilité annuelle sur les pages kata de la FIJ">Year-round visibility on IJF Kata pages</li>
-        </ul>
-        <div class="pkg-action"><a class="btn btn-blue" href="/cdn-cgi/l/email-protection#a5c8c4d1cdccc0d08bc1d0d5c0d7d7c0e5c2c8c4ccc98bc6cac8" data-en="Enquire" data-fr="Renseignements">Enquire</a></div>
-      </div>
+
     </div>
     <div class="cta-bar">
       <div>
@@ -695,7 +692,7 @@ footer{background:var(--ink);padding:56px 0 36px;}
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── COUNTDOWN ──
 // Target: July 4, 2026 09:00 local (Laval, EDT = UTC-4)
 // Using a fixed UTC timestamp: 2026-07-04T13:00:00Z
@@ -721,12 +718,4 @@ function tick() {
   document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
 }
 tick();
-setInterval(tick, 1000);
-
-// ── LANGUAGE TOGGLE ──
-let currentLang = 'en';
-
-function setLang(lang) {
-  currentLang = lang;
-  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-  document.getElementById('btn-fr').cl
+setInterval(
