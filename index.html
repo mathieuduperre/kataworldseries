@@ -67,6 +67,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--blue);borde
 .hstat-num{font-family:'DM Serif Display',serif;font-size:26px;color:#fff;display:block;line-height:1;}
 .hstat-lbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:4px;display:block;}
 
+
+.cta-btn{display:inline-block;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;text-decoration:none;padding:7px 18px;border:1px solid transparent;transition:opacity .2s;}
+.cta-btn-participant{background:var(--blue);color:#fff;}
+.cta-btn-participant:hover{opacity:.85;}
+.cta-btn-judge{background:var(--ink);color:#fff;}
+.cta-btn-judge:hover{opacity:.85;}
+.cta-btn-sponsor{background:var(--red);color:#fff;}
+.cta-btn-sponsor:hover{opacity:.85;}
+@media(max-width:960px){.cta-btn{font-size:10px;padding:6px 12px;}}
+
 /* ANNOUNCE */
 .strip{background:var(--paper);border-bottom:1px solid var(--rule);padding:11px 40px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:var(--ink2);}
 .strip strong{color:var(--blue);font-weight:500;}
@@ -281,17 +291,20 @@ footer{background:var(--ink);padding:56px 0 36px;}
         <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
         <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
       </div>
-      <a class="nav-cta" href="#sponsorship" data-en="Become a Partner" data-fr="Devenez partenaire">Become a Partner</a>
     </div>
   </div>
 </nav>
 
-<!-- ANNOUNCE STRIP -->
+<!-- ANNOUNCE STRIP + CTA BUTTONS -->
 <div class="strip" style="margin-top:60px;">
   <strong data-en="Next Stage:" data-fr="Prochaine étape :">Next Stage:</strong>
   <span data-en="Laval, Québec · Canada · July 4, 2026" data-fr="Laval, Québec · Canada · 4 juillet 2026">Laval, Québec · Canada · July 4, 2026</span>
   <span class="sep">|</span>
   <span data-en="Final stage before the World Championships in Sarajevo" data-fr="Dernière étape avant les Championnats du monde à Sarajevo">Final stage before the World Championships in Sarajevo</span>
+  <span class="sep">|</span>
+  <a class="cta-btn cta-btn-participant" href="PLACEHOLDER_PARTICIPANT_URL" data-en="Become a Participant" data-fr="Devenir participant">Become a Participant</a>
+  <a class="cta-btn cta-btn-judge" href="PLACEHOLDER_JUDGE_URL" data-en="Become a Judge" data-fr="Devenir juge">Become a Judge</a>
+  <a class="cta-btn cta-btn-sponsor" href="mailto:mathieu.duperre@gmail.com?subject=Sponsorship%20Enquiry%20%E2%80%94%20Kata%20World%20Series%20Laval%202026" data-en="Become a Sponsor" data-fr="Devenir commanditaire">Become a Sponsor</a>
 </div>
 
 <!-- HERO -->
