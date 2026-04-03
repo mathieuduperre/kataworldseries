@@ -58,8 +58,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--blue);borde
 .btn-red:hover{opacity:.88;}
 .btn-outline{border:1px solid var(--rule);color:var(--ink2);}
 .btn-outline:hover{border-color:var(--blue);color:var(--blue);}
-.hero-right{position:relative;min-height:500px;}
-.hero-right img{position:absolute;inset:0;}
+.hero-right{position:relative;min-height:500px;background:var(--blue);}
+.hero-right img{position:absolute;inset:0;object-fit:contain;object-position:center;}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,58,107,.4) 0%,transparent 60%);}
 .hero-stat-bar{position:absolute;bottom:0;left:0;right:0;background:rgba(27,58,107,.88);backdrop-filter:blur(6px);display:grid;grid-template-columns:repeat(3,1fr);}
 .hstat{padding:20px 24px;border-right:1px solid rgba(255,255,255,.12);text-align:center;}
@@ -313,7 +313,7 @@ footer{background:var(--ink);padding:56px 0 36px;}
     <div class="hero-stat-bar">
       <div class="hstat"><span class="hstat-num">3</span><span class="hstat-lbl" data-en="Continents · 2026" data-fr="Continents · 2026">Continents · 2026</span></div>
       <div class="hstat"><span class="hstat-num">200+</span><span class="hstat-lbl" data-en="Countries Reached" data-fr="Pays atteints">Countries Reached</span></div>
-      <div class="hstat"><span class="hstat-num">11</span><span class="hstat-lbl" data-en="Kata Categories" data-fr="Catégories de kata">Kata Categories</span></div>
+      <div class="hstat"><span class="hstat-num">13</span><span class="hstat-lbl" data-en="Kata Categories" data-fr="Catégories de kata">Kata Categories</span></div>
     </div>
   </div>
 </section>
@@ -334,7 +334,7 @@ footer{background:var(--ink);padding:56px 0 36px;}
         <div class="feat-date-line" data-en="July 4, 2026" data-fr="4 juillet 2026">July 4, 2026</div>
         <div class="feat-body">
           <p data-en="The Laval Kata World Series marks a historic first — the IJF Kata World Series arrives in North America. Hosted in the greater Montréal area, this landmark event brings the world's finest kata specialists to Canadian tatami for the very first time as part of the official IJF circuit." data-fr="La Kata World Series de Laval marque une première historique — la Kata World Series de la FIJ arrive en Amérique du Nord. Organisé dans la région du Grand Montréal, cet événement marquant réunit les meilleurs spécialistes mondiaux de kata sur tatami canadien pour la toute première fois dans le cadre du circuit officiel de la FIJ.">The Laval Kata World Series marks a historic first — the IJF Kata World Series arrives in North America. Hosted in the greater Montréal area, this landmark event brings the world's finest kata specialists to Canadian tatami for the very first time as part of the official IJF circuit.</p>
-          <p data-en="Competitors will contest eleven categories spanning Cadets through Seniors across all major disciplines including Nage-no-Kata, Katame-no-Kata, Kime-no-Kata, Ju-no-Kata, Kodokan Goshin-Jutsu, Koshiki-no-Kata and Itsutsu-no-Kata. Results count toward the IJF Kata World Rankings." data-fr="Les compétiteurs s'affronteront dans onze catégories allant des Cadets aux Seniors dans toutes les disciplines majeures : Nage-no-Kata, Katame-no-Kata, Kime-no-Kata, Ju-no-Kata, Kodokan Goshin-Jutsu, Koshiki-no-Kata et Itsutsu-no-Kata. Les résultats comptent pour le classement mondial kata de la FIJ.">Competitors will contest eleven categories spanning Cadets through Seniors across all major disciplines including Nage-no-Kata, Katame-no-Kata, Kime-no-Kata, Ju-no-Kata, Kodokan Goshin-Jutsu, Koshiki-no-Kata and Itsutsu-no-Kata. Results count toward the IJF Kata World Rankings.</p>
+          <p data-en="Competitors will contest thirteen categories spanning Cadets through Seniors across all major disciplines including Nage-no-Kata, Katame-no-Kata, Kime-no-Kata, Ju-no-Kata, Kodokan Goshin-Jutsu, Koshiki-no-Kata and Itsutsu-no-Kata. Results count toward the IJF Kata World Rankings." data-fr="Les compétiteurs s'affronteront dans treize catégories allant des Cadets aux Seniors dans toutes les disciplines majeures : Nage-no-Kata, Katame-no-Kata, Kime-no-Kata, Ju-no-Kata, Kodokan Goshin-Jutsu, Koshiki-no-Kata et Itsutsu-no-Kata. Les résultats comptent pour le classement mondial kata de la FIJ.">Competitors will contest thirteen categories spanning Cadets through Seniors across all major disciplines including Nage-no-Kata, Katame-no-Kata, Kime-no-Kata, Ju-no-Kata, Kodokan Goshin-Jutsu, Koshiki-no-Kata and Itsutsu-no-Kata. Results count toward the IJF Kata World Rankings.</p>
         </div>
         <div class="feat-btns">
           <a class="btn btn-red" href="https://www.ijf.org/competition/3219" target="_blank" rel="noopener" data-en="Official IJF Page" data-fr="Page officielle FIJ">Official IJF Page</a>
@@ -357,7 +357,7 @@ footer{background:var(--ink);padding:56px 0 36px;}
         </div>
         <div class="feat-facts">
           <div><span class="fact-num">30+</span><span class="fact-lbl" data-en="Nations expected" data-fr="Nations attendues">Nations expected</span></div>
-          <div><span class="fact-num">11</span><span class="fact-lbl" data-en="Kata categories" data-fr="Catégories de kata">Kata categories</span></div>
+          <div><span class="fact-num">13</span><span class="fact-lbl" data-en="Kata categories" data-fr="Catégories de kata">Kata categories</span></div>
           <div><span class="fact-num">300+</span><span class="fact-lbl" data-en="Athletes expected" data-fr="Athlètes attendus">Athletes expected</span></div>
           <div><span class="fact-num" data-en="July 4" data-fr="4 juil.">July 4</span><span class="fact-lbl" data-en="Competition date" data-fr="Date de compétition">Competition date</span></div>
         </div>
@@ -591,7 +591,7 @@ footer{background:var(--ink);padding:56px 0 36px;}
           <li data-en="Listing on event website" data-fr="Inscription sur le site de l'événement">Listing on event website</li>
           <li data-en="2 event admission passes" data-fr="2 laissez-passer pour l'événement">2 event admission passes</li>
         </ul>
-        <div class="pkg-action"><a class="btn btn-outline" href="mailto:mathieu.duperre@gmail.com" data-en="Enquire" data-fr="Renseignements">Enquire</a></div>
+        <div class="pkg-action"><a class="btn btn-outline" href="/cdn-cgi/l/email-protection#82efe3f6eaebe7f7ace6f7f2e7f0f0e7c2e5efe3ebeeace1edef" data-en="Enquire" data-fr="Renseignements">Enquire</a></div>
       </div>
       <div class="pkg pkg-feat">
         <div class="pkg-tag" data-en="Recommended" data-fr="Recommandé">Recommended</div>
@@ -608,7 +608,7 @@ footer{background:var(--ink);padding:56px 0 36px;}
           <li data-en="10 VIP passes + hospitality access" data-fr="10 laissez-passer VIP + accès hospitalité">10 VIP passes + hospitality access</li>
           <li data-en="Worldwide visibility via IJF.org" data-fr="Visibilité mondiale via IJF.org">Worldwide visibility via IJF.org</li>
         </ul>
-        <div class="pkg-action"><a class="btn btn-white" href="mailto:mathieu.duperre@gmail.com" data-en="Enquire" data-fr="Renseignements">Enquire</a></div>
+        <div class="pkg-action"><a class="btn btn-white" href="/cdn-cgi/l/email-protection#1974786d71707c6c377d6c697c6b6b7c597e74787075377a7674" data-en="Enquire" data-fr="Renseignements">Enquire</a></div>
       </div>
       <div class="pkg">
         <div class="pkg-tag" data-en="Premium" data-fr="Premium">Premium</div>
@@ -625,7 +625,7 @@ footer{background:var(--ink);padding:56px 0 36px;}
           <li data-en="20 VIP passes + official dinner" data-fr="20 laissez-passer VIP + dîner officiel">20 VIP passes + official dinner</li>
           <li data-en="Year-round visibility on IJF Kata pages" data-fr="Visibilité annuelle sur les pages kata de la FIJ">Year-round visibility on IJF Kata pages</li>
         </ul>
-        <div class="pkg-action"><a class="btn btn-blue" href="mailto:mathieu.duperre@gmail.com" data-en="Enquire" data-fr="Renseignements">Enquire</a></div>
+        <div class="pkg-action"><a class="btn btn-blue" href="/cdn-cgi/l/email-protection#a5c8c4d1cdccc0d08bc1d0d5c0d7d7c0e5c2c8c4ccc98bc6cac8" data-en="Enquire" data-fr="Renseignements">Enquire</a></div>
       </div>
     </div>
     <div class="cta-bar">
@@ -633,7 +633,7 @@ footer{background:var(--ink);padding:56px 0 36px;}
         <h3 data-en="Ready to become a partner?" data-fr="Prêt à devenir partenaire ?">Ready to become a partner?</h3>
         <p data-en="Contact our team to discuss a custom package — local visibility in Québec, international reach through the IJF, or both. We will build a partnership that puts your brand at the heart of a growing global sport." data-fr="Contactez notre équipe pour discuter d'un forfait personnalisé — visibilité locale au Québec, portée internationale via la FIJ, ou les deux. Nous bâtirons un partenariat qui place votre marque au cœur d'un sport mondial en pleine croissance.">Contact our team to discuss a custom package — local visibility in Québec, international reach through the IJF, or both. We will build a partnership that puts your brand at the heart of a growing global sport.</p>
       </div>
-      <a class="btn btn-white" href="mailto:mathieu.duperre@gmail.com" data-en="Contact Us →" data-fr="Contactez-nous →">Contact Us →</a>
+      <a class="btn btn-white" href="/cdn-cgi/l/email-protection#b7dad6c3dfded2c299d3c2c7d2c5c5d2f7d0dad6dedb99d4d8da" data-en="Contact Us →" data-fr="Contactez-nous →">Contact Us →</a>
     </div>
   </div>
 </section>
@@ -677,12 +677,12 @@ footer{background:var(--ink);padding:56px 0 36px;}
     </div>
     <div class="foot-copy">
       <span data-en="An official IJF Kata Commission event series · All rights reserved" data-fr="Une série officielle de la Commission kata de la FIJ · Tous droits réservés">An official IJF Kata Commission event series · All rights reserved</span>
-      <span data-en="Sponsorship:" data-fr="Commandite :">Sponsorship:</span> <a href="mailto:mathieu.duperre@gmail.com">mathieu.duperre@gmail.com</a>
+      <span data-en="Sponsorship:" data-fr="Commandite :">Sponsorship:</span> <a href="/cdn-cgi/l/email-protection#345955405c5d51411a50414451464651745359555d581a575b59"><span class="__cf_email__" data-cfemail="2944485d41404c5c074d5c594c5b5b4c694e44484045074a4644">[email&#160;protected]</span></a>
     </div>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── COUNTDOWN ──
 // Target: July 4, 2026 09:00 local (Laval, EDT = UTC-4)
 // Using a fixed UTC timestamp: 2026-07-04T13:00:00Z
@@ -716,21 +716,4 @@ let currentLang = 'en';
 function setLang(lang) {
   currentLang = lang;
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-  document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
-  document.documentElement.lang = lang;
-
-  // Update all elements with data-en / data-fr attributes
-  document.querySelectorAll('[data-en]').forEach(el => {
-    const txt = el.getAttribute('data-' + lang);
-    if (!txt) return;
-    // Use innerHTML so <em> tags survive
-    if (txt.includes('<')) {
-      el.innerHTML = txt;
-    } else {
-      el.textContent = txt;
-    }
-  });
-}
-</script>
-</body>
-</html>
+  document.getElementById('btn-fr').cl
